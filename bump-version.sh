@@ -51,21 +51,21 @@ git tag ${TAG}
 #
 git checkout gh-pages
 
-cp ./build/fmm-flow.phar downloads/fmm-flow-${TAG}.phar
+cp build/fmm-flow.phar downloads/fmm-flow-${TAG}.phar
 git add downloads/fmm-flow-${TAG}.phar
 
-SHA1=$(openssl sha1 fmm-flow.phar)
+SHA1=$(openssl sha1 downloads/fmm-flow.phar)
 
 JSON='name:"fmm-flow.phar"'
 JSON="${JSON},sha1:\"${SHA1}\""
 JSON="${JSON},url:\"http://guillaumedelre.github.io/fmm-flow/downloads/fmm-flow-${TAG}.phar\""
 JSON="${JSON},version:\"${TAG}\""
 
-if [ -f cliph.phar.pubkey ]; then
-    cp cliph.phar.pubkey pubkeys/cliph-${TAG}.phar.pubkeys
-    git add pubkeys/cliph-${TAG}.phar.pubkeys
-    JSON="${JSON},publicKey:\"http://guillaumedelre.github.io/fmm-flow/pubkeys/fmm-flow-${TAG}.phar.pubkey\""
-fi
+#if [ -f cliph.phar.pubkey ]; then
+#    cp cliph.phar.pubkey pubkeys/cliph-${TAG}.phar.pubkeys
+#    git add pubkeys/cliph-${TAG}.phar.pubkeys
+#    JSON="${JSON},publicKey:\"http://guillaumedelre.github.io/fmm-flow/pubkeys/fmm-flow-${TAG}.phar.pubkey\""
+#fi
 
 #
 # Update manifest
