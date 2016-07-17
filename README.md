@@ -26,4 +26,5 @@ See the [box](http://box-project.org/) tool for more informations,
 
 ## Todo
 
-Integrate git subplit in the workflow.
+- Integrate git subplit in the workflow.
+- make the bump-version.sh works :)
