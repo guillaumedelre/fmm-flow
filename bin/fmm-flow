@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Fmm\Flow\Command;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Exception\ParseException;
+
+$configDirectories = array(__DIR__.'/../app/config');
+
+$locator = new FileLocator($configDirectories);
+$yamlConfigFile = $locator->locate('config.yml', null, true);
+
+try {
+    $config = Yaml::parse(file_get_contents($yamlConfigFile));
+} catch (ParseException $e) {
+    printf("Unable to parse the YAML string: %s", $e->getMessage());
+}
+
+$application = new Application('fmm-flow', '@package_version@');
+$application->add(new Command\FmmFlowInitCommand($config));
+$application->add(new Command\FmmFlowFeatureCommand($config));
+$application->add(new Command\FmmFlowReleaseCommand($config));
+$application->add(new Command\FmmFlowUpdateCommand($config));
+$application->run();
