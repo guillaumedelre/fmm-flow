@@ -20,13 +20,13 @@ php -r "if(preg_match('/^\d+\.\d+\.\d+(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(
 
 
 # CHECK jsawk COMMAND
-command -v jsawk >/dev/null 2>&1 || { echo "Error : Command jsawk is not installed on the system"; echo "See : https://github.com/micha/jsawk "; echo  "Exiting..." >&2; exit 65; }
+command -v ./jsawk >/dev/null 2>&1 || { echo "Error : Command jsawk is not installed on the system"; echo "See : https://github.com/micha/jsawk "; echo  "Exiting..." >&2; exit 65; }
 
 # CHECK js COMMAND
 command -v js >/dev/null 2>&1 || { echo "Error : Command js is not installed on the system"; echo "Should be fixed by installing spidermonkey "; echo  "Exiting..." >&2; exit 65; }
 
 # CHECK box COMMAND
-command -v box >/dev/null 2>&1 || { echo "Error : Command box is not installed on the system"; echo "See : https://github.com/box-project/box2 "; echo  "Exiting..." >&2; exit 65; }
+command -v ./box.phar >/dev/null 2>&1 || { echo "Error : Command box is not installed on the system"; echo "See : https://github.com/box-project/box2 "; echo  "Exiting..." >&2; exit 65; }
 
 # CHECK python COMMAND
 command -v python >/dev/null 2>&1 || { echo "Error : Command python is not installed on the system"; echo  "Exiting..." >&2; exit 65; }
@@ -58,13 +58,13 @@ SHA1=$(openssl sha1 fmm-flow.phar)
 
 JSON='name:"fmm-flow.phar"'
 JSON="${JSON},sha1:\"${SHA1}\""
-JSON="${JSON},url:\"http://mattketmo.github.io/cliph/downloads/cliph-${TAG}.phar\""
+JSON="${JSON},url:\"http://guillaumedelre.github.io/fmm-flow/downloads/fmm-flow-${TAG}.phar\""
 JSON="${JSON},version:\"${TAG}\""
 
 if [ -f cliph.phar.pubkey ]; then
     cp cliph.phar.pubkey pubkeys/cliph-${TAG}.phar.pubkeys
     git add pubkeys/cliph-${TAG}.phar.pubkeys
-    JSON="${JSON},publicKey:\"http://mattketmo.github.io/cliph/pubkeys/cliph-${TAG}.phar.pubkey\""
+    JSON="${JSON},publicKey:\"http://guillaumedelre.github.io/fmm-flow/pubkeys/fmm-flow-${TAG}.phar.pubkey\""
 fi
 
 #
