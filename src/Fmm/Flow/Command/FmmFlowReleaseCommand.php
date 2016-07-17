@@ -77,7 +77,7 @@ class FmmFlowReleaseCommand extends AbstractFmmFlowCommand
         $this->log(sprintf('Finish release %s', $releaseName), self::LOG_LEVEL_COMMENT);
         $this->git->git(sprintf(self::CMD_CHECKOUT_BRANCH, self::BRANCH_MASTER, null));
         $this->git->git(sprintf(self::CMD_MERGE_BRANCH, self::BRANCH_RELEASE . $releaseName));
-        $this->git->git(sprintf(self::CMD_TAG_BRANCH, $releaseName));
+        $this->git->git(sprintf(self::CMD_TAG_ANNOT_BRANCH, $releaseName));
         $this->git->git(sprintf(self::CMD_CHECKOUT_BRANCH, self::BRANCH_DEVELOP, null));
         $this->git->git(sprintf(self::CMD_MERGE_BRANCH, self::BRANCH_RELEASE . $releaseName));
         $this->git->git(sprintf(self::CMD_DELETE_BRANCH, self::BRANCH_RELEASE . $releaseName));
