@@ -54,7 +54,7 @@ git checkout gh-pages
 cp build/fmm-flow.phar downloads/fmm-flow-${TAG}.phar
 git add downloads/fmm-flow-${TAG}.phar
 
-SHA1=$(openssl sha1 downloads/fmm-flow.phar)
+SHA1=$(openssl sha1 downloads/fmm-flow-${TAG}.phar)
 
 JSON='name:"fmm-flow.phar"'
 JSON="${JSON},sha1:\"${SHA1}\""
