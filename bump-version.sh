@@ -44,7 +44,7 @@ TAG=$1
 #
 git checkout master
 git tag ${TAG}
-box build
+./box.phar build
 
 #
 # Copy executable file into GH pages
