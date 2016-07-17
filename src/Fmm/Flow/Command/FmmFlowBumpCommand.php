@@ -40,13 +40,8 @@ class FmmFlowBumpCommand extends AbstractFmmFlowCommand
         $process = new Process('box.phar build');
         $process->start();
         while ($process->isRunning()) {
-            $this->log('Building phar...', self::LOG_LEVEL_COMMENT);
         }
-        if (!$process->isSuccessful()) {
-            $this->log($process->getErrorOutput(), self::LOG_LEVEL_ERROR);
-        } else {
-            $this->log($process->getOutput(), self::LOG_LEVEL_INFO);
-        }
+        $this->log($process->getOutput(), self::LOG_LEVEL_COMMENT);
 
         $this->git->git(sprintf(self::CMD_CHECKOUT_BRANCH, self::BRANCH_GH_PAGES, null));
 
