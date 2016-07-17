@@ -1,4 +1,5 @@
 /vendor
 build/fmm-flow.phar
+downloads/*.phar
 box.json
 .idea
