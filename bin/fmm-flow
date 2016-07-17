@@ -25,4 +25,5 @@ $application->add(new Command\FmmFlowInitCommand($config));
 $application->add(new Command\FmmFlowFeatureCommand($config));
 $application->add(new Command\FmmFlowReleaseCommand($config));
 $application->add(new Command\FmmFlowUpdateCommand($config));
+$application->add(new Command\FmmFlowBumpCommand($config));
 $application->run();

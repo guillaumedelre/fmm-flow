@@ -45,11 +45,13 @@ abstract class AbstractFmmFlowCommand extends Command
     const CMD_DELETE_BRANCH = 'branch -d %s';
     const CMD_PULL_BRANCH = 'pull --rebase origin %s';
     const CMD_TAG_BRANCH = 'tag -a %s';
+    const CMD_PUSH_TAG = 'push origin --tags';
 
     const BRANCH_MASTER = 'master';
     const BRANCH_DEVELOP = 'develop';
     const BRANCH_FEATURE = 'feature/';
     const BRANCH_RELEASE = 'release/';
+    const BRANCH_GH_PAGES = 'gh-pages';
 
     /**
      * AbstractFmmFlowCommand constructor.

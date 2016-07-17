@@ -56,12 +56,12 @@ git add downloads/fmm-flow-${TAG}.phar
 
 SHA1=$(openssl sha1 downloads/fmm-flow-${TAG}.phar)
 echo $SHA1
-exit 1
 
 JSON='name:"fmm-flow.phar"'
 JSON="${JSON},sha1:\"${SHA1}\""
 JSON="${JSON},url:\"http://guillaumedelre.github.io/fmm-flow/downloads/fmm-flow-${TAG}.phar\""
-JSON="${JSON},version:\"${TAG}\""
+JSON="{${JSON},version:\"${TAG}\"}"
+echo $JSON
 
 #if [ -f cliph.phar.pubkey ]; then
 #    cp cliph.phar.pubkey pubkeys/cliph-${TAG}.phar.pubkeys
