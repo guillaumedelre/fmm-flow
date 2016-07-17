@@ -73,7 +73,7 @@ class FmmFlowBumpCommand extends AbstractFmmFlowCommand
     private function validateTag($version)
     {
         $matches = [];
-        if (!preg_match('/^\d+\.\d+\.\d+(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?\$/',$version, $matches)) {
+        if (preg_match('/^\d+\.\d+\.\d+(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?\$/',$version, $matches)) {
             $this->log(sprintf('Format of version tag is not invalid'), self::LOG_LEVEL_ERROR);
             exit(1);
         }
