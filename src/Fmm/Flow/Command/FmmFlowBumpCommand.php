@@ -6,6 +6,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class FmmFlowBumpCommand extends AbstractFmmFlowCommand
@@ -37,7 +38,15 @@ class FmmFlowBumpCommand extends AbstractFmmFlowCommand
         $this->git->git(sprintf(self::CMD_TAG_BRANCH, $version, null));
 
         $process = new Process('box.phar build');
-        $process->run();
+        $process->start();
+        while ($process->isRunning()) {
+            $this->log('Building phar...', self::LOG_LEVEL_COMMENT);
+        }
+        if (!$process->isSuccessful()) {
+            $this->log($process->getErrorOutput(), self::LOG_LEVEL_ERROR);
+        } else {
+            $this->log($process->getOutput(), self::LOG_LEVEL_INFO);
+        }
 
         $this->git->git(sprintf(self::CMD_CHECKOUT_BRANCH, self::BRANCH_GH_PAGES, null));
 
