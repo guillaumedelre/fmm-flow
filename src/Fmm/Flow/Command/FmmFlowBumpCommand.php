@@ -40,13 +40,15 @@ class FmmFlowBumpCommand extends AbstractFmmFlowCommand
         $process = new Process('box.phar build');
         $process->start();
         while ($process->isRunning()) {
+            $this->log('Build Phar processing...');
         }
         $this->log($process->getOutput(), self::LOG_LEVEL_COMMENT);
 
-        $this->git->git(sprintf(self::CMD_CHECKOUT_BRANCH, self::BRANCH_GH_PAGES, null));
-
         $fs = new Filesystem();
         $fs->copy('build/fmm-flow.phar', "downloads/fmm-flow-$version.phar");
+
+        $this->git->git(sprintf(self::CMD_CHECKOUT_BRANCH, self::BRANCH_GH_PAGES, null));
+
         $this->git->git("add downloads/fmm-flow-$version.phar");
         $sha1 = sha1_file("downloads/fmm-flow-$version.phar");
         $manifest = [
