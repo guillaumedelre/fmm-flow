@@ -55,6 +55,8 @@ cp build/fmm-flow.phar downloads/fmm-flow-${TAG}.phar
 git add downloads/fmm-flow-${TAG}.phar
 
 SHA1=$(openssl sha1 downloads/fmm-flow-${TAG}.phar)
+echo $SHA1
+exit 1
 
 JSON='name:"fmm-flow.phar"'
 JSON="${JSON},sha1:\"${SHA1}\""
