@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class FmmFlowUpdateCommand extends AbstractFmmFlowCommand
 {
-    const MANIFEST_FILE = 'http://guillaumedelre.github.io/fmm-flow/manifest.json';
+    const MANIFEST_FILE = 'https://guillaumedelre.github.io/fmm-flow/manifest.json';
 
     protected function configure()
     {
@@ -29,11 +29,17 @@ class FmmFlowUpdateCommand extends AbstractFmmFlowCommand
         $this->log('Looking for updates...');
 
         try {
-            $manager = new Manager(Manifest::loadFile(self::MANIFEST_FILE));
+            $manifestFile = Manifest::loadFile(self::MANIFEST_FILE);
+        } catch (\Exception $e) {
+            $this->log($e->getMessage(), self::LOG_LEVEL_ERROR);
+            exit(1);
+        }
+
+        try {
+            $manager = new Manager($manifestFile);
         } catch (FileException $e) {
             $this->log('Unable to search for updates', self::LOG_LEVEL_ERROR);
-
-            return 1;
+            exit(1);
         }
 
         $currentVersion = $this->getApplication()->getVersion();

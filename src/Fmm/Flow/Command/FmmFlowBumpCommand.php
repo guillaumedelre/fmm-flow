@@ -53,12 +53,12 @@ class FmmFlowBumpCommand extends AbstractFmmFlowCommand
 
         $this->git->git("add downloads/fmm-flow-$version.phar");
         $sha1 = sha1_file("downloads/fmm-flow-$version.phar");
-        $manifest = [
+        $manifest = [[
             'name' => "fmm-flow.phar",
             'sha1' => "$sha1",
             'url' => "http://guillaumedelre.github.io/fmm-flow/downloads/fmm-flow-$version.phar",
             'version' => "$version",
-        ];
+        ]];
         $fs->dumpFile('manifest.json', json_encode($manifest, JSON_PRETTY_PRINT));
         $this->git->git("add manifest.json");
         $this->git->git("commit -m 'Bump version $version'");
