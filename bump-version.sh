@@ -51,7 +51,7 @@ git tag ${TAG}
 #
 git checkout gh-pages
 
-cp fmm-flow.phar downloads/fmm-flow-${TAG}.phar
+cp ./build/fmm-flow.phar downloads/fmm-flow-${TAG}.phar
 git add downloads/fmm-flow-${TAG}.phar
 
 SHA1=$(openssl sha1 fmm-flow.phar)
