@@ -19,7 +19,7 @@ Then Run the build.
 - run `box.phar build` to build a PHAR file. 
 - launch the app `./build/fmm-flow.phar`.
 
-See the [box](http://box-project.org/) tool for more informations.
+See the [box](http://box-project.github.io/box2/) tool for more informations.
 
 ## Usage
 
@@ -29,10 +29,10 @@ For more informations on each command, use --help.
 
 Available main commands are :
 -  fmm-flow init
--  fmm-flow feature start <myFeature>
--  fmm-flow feature finish <myFeature>
--  fmm-flow feature publish <myFeature>
--  fmm-flow feature retrieve <myFeature>
+-  fmm-flow feature start myFeature
+-  fmm-flow feature finish myFeature
+-  fmm-flow feature publish myFeature
+-  fmm-flow feature retrieve myFeature
 -  fmm-flow release start <x.x.x>
 -  fmm-flow release finish <x.x.x>
 -  fmm-flow release publish <x.x.x>
