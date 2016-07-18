@@ -32,6 +32,10 @@ class FmmFlowFeatureCommand extends AbstractFmmFlowCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
@@ -52,12 +56,18 @@ class FmmFlowFeatureCommand extends AbstractFmmFlowCommand
         }
     }
 
+    /**
+     * @param $featureName
+     */
     private function featureStart($featureName)
     {
         $this->log(sprintf('Start feature %s', $featureName), self::LOG_LEVEL_COMMENT);
         $this->git->git(sprintf(self::CMD_CREATE_BRANCH, self::BRANCH_FEATURE . $featureName, self::BRANCH_DEVELOP));
     }
 
+    /**
+     * @param $featureName
+     */
     private function featurePublish($featureName)
     {
         $this->log(sprintf('Publish feature %s', $featureName), self::LOG_LEVEL_COMMENT);
@@ -65,6 +75,9 @@ class FmmFlowFeatureCommand extends AbstractFmmFlowCommand
         $this->git->git(sprintf(self::CMD_PUSH_BRANCH, self::BRANCH_FEATURE . $featureName));
     }
 
+    /**
+     * @param $featureName
+     */
     private function featureRetrieve($featureName)
     {
         $this->log(sprintf('Retrieve feature %s', $featureName), self::LOG_LEVEL_COMMENT);
@@ -72,6 +85,9 @@ class FmmFlowFeatureCommand extends AbstractFmmFlowCommand
         $this->git->git(sprintf(self::CMD_PULL_BRANCH, self::BRANCH_FEATURE . $featureName));
     }
 
+    /**
+     * @param $featureName
+     */
     private function featureFinish($featureName)
     {
         $this->log(sprintf('Finish feature %s', $featureName), self::LOG_LEVEL_COMMENT);

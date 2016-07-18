@@ -72,12 +72,19 @@ abstract class AbstractFmmFlowCommand extends Command
         $this->git->streamOutput();
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
         $this->output = $output;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     private function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

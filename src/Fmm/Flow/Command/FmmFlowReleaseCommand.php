@@ -32,6 +32,10 @@ class FmmFlowReleaseCommand extends AbstractFmmFlowCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
@@ -52,12 +56,18 @@ class FmmFlowReleaseCommand extends AbstractFmmFlowCommand
         }
     }
 
+    /**
+     * @param $releaseName
+     */
     private function releaseStart($releaseName)
     {
         $this->log(sprintf('Start release %s', $releaseName), self::LOG_LEVEL_COMMENT);
         $this->git->git(sprintf(self::CMD_CREATE_BRANCH, self::BRANCH_RELEASE . $releaseName, self::BRANCH_DEVELOP));
     }
 
+    /**
+     * @param $releaseName
+     */
     private function releasePublish($releaseName)
     {
         $this->log(sprintf('Publish release %s', $releaseName), self::LOG_LEVEL_COMMENT);
@@ -65,6 +75,9 @@ class FmmFlowReleaseCommand extends AbstractFmmFlowCommand
         $this->git->git(sprintf(self::CMD_PUSH_BRANCH, self::BRANCH_RELEASE . $releaseName));
     }
 
+    /**
+     * @param $releaseName
+     */
     private function releaseRetrieve($releaseName)
     {
         $this->log(sprintf('Retrieve release %s', $releaseName), self::LOG_LEVEL_COMMENT);
@@ -72,6 +85,9 @@ class FmmFlowReleaseCommand extends AbstractFmmFlowCommand
         $this->git->git(sprintf(self::CMD_PULL_BRANCH, self::BRANCH_RELEASE . $releaseName));
     }
 
+    /**
+     * @param $releaseName
+     */
     private function releaseFinish($releaseName)
     {
         $this->log(sprintf('Finish release %s', $releaseName), self::LOG_LEVEL_COMMENT);
